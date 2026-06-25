@@ -48,6 +48,15 @@ describe('TaskService CRUD', () => {
     assert.equal(service.findById(created.id).status, 'completed');
   });
 
+  it('actualiza solo el estado cuando no se envía un título nuevo', () => {
+    const created = service.create({ title: 'Tarea inicial' });
+    const updated = service.update(created.id, { status: 'completed' });
+
+    assert.equal(updated.status, 'completed');
+    assert.equal(updated.title, 'Tarea inicial');
+    assert.equal(service.findById(created.id).status, 'completed');
+  });
+
   it('elimina una tarea', () => {
     const created = service.create({ title: 'Eliminar tarea' });
 

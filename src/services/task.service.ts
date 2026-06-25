@@ -76,7 +76,7 @@ export class TaskService {
     const currentTask = this.findById(id);
     const updatedTask: Task = {
       ...currentTask,
-      title: input.title,
+      title: input.title ?? currentTask.title,
       status: input.status ?? currentTask.status,
     };
 

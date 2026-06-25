@@ -40,13 +40,19 @@ const parseCreateTaskInput = (body: unknown): CreateTaskInput => {
 const parseUpdateTaskInput = (body: unknown): UpdateTaskInput => {
   const requestBody = requireBodyObject(body);
   const status = requestBody.status;
+  const hasTitle = Object.prototype.hasOwnProperty.call(requestBody, 'title');
+  const hasStatus = Object.prototype.hasOwnProperty.call(requestBody, 'status');
 
   if (status !== undefined && !isTaskStatus(status)) {
     throw new HttpError(400, 'El estado debe ser pending o completed');
   }
 
+  if (!hasTitle && !hasStatus) {
+    throw new HttpError(400, 'Se debe enviar al menos un campo para actualizar');
+  }
+
   return {
-    title: parseTitle(requestBody.title),
+    title: hasTitle ? parseTitle(requestBody.title) : undefined,
     status,
   };
 };

@@ -1,13 +1,13 @@
 # Backend
 
-API REST basica para administrar tareas en memoria con Express y TypeScript.
+API REST básica para administrar tareas con Express y TypeScript.
 
 ## Requisitos
 
-- Node.js 18 o superior
+- Node.js 22.5 o superior
 - npm
 
-## Instalacion
+## Instalación
 
 ```bash
 npm install
@@ -22,12 +22,11 @@ FRONTEND_URL=http://localhost:4200
 DATABASE_PATH=./data/tasks.db
 ```
 
-`FRONTEND_URL` acepta varios orígenes separados por comas. Solo esos orígenes podrán
-consumir la API desde un navegador.
+`FRONTEND_URL` acepta varios orígenes separados por comas. Solo esos orígenes podrán consumir la API desde un navegador.
 
-## Ejecucion
+## Ejecución
 
-Modo desarrollo con recarga automatica:
+Modo desarrollo con recarga automática:
 
 ```bash
 npm run dev
@@ -39,13 +38,13 @@ Compilar TypeScript:
 npm run build
 ```
 
-Ejecutar la version compilada:
+Ejecutar la versión compilada:
 
 ```bash
 npm start
 ```
 
-Ejecutar las pruebas CRUD:
+Ejecutar pruebas:
 
 ```bash
 npm test
@@ -53,9 +52,7 @@ npm test
 
 ## Persistencia
 
-Las tareas se almacenan en una base de datos SQLite. Por defecto se crea el archivo
-`data/tasks.db`, por lo que la información se conserva al reiniciar el servidor.
-Puedes cambiar su ubicación con la variable `DATABASE_PATH`.
+Las tareas se almacenan en una base de datos SQLite. Por defecto se crea el archivo `data/tasks.db`, por lo que la información se conserva al reiniciar el servidor. Puedes cambiar su ubicación con la variable `DATABASE_PATH`.
 
 ## Modelo de tarea
 
@@ -74,7 +71,7 @@ Estados permitidos:
 
 ## Endpoints
 
-| Metodo | Ruta | Descripcion |
+| Método | Ruta | Descripción |
 | --- | --- | --- |
 | GET | `/` | Health check del backend |
 | GET | `/api/tasks` | Lista todas las tareas |
@@ -119,7 +116,7 @@ Body:
 }
 ```
 
-`status` es opcional. Si se envia, debe ser `pending` o `completed`.
+`status` es opcional. Si se envía, debe ser `pending` o `completed`.
 
 ## Marcar completada
 
@@ -151,8 +148,26 @@ Las respuestas de error usan este formato:
 }
 ```
 
-Codigos comunes:
+Códigos comunes:
 
-- `400`: datos invalidos
+- `400`: datos inválidos
 - `404`: tarea o ruta no encontrada
 - `500`: error interno del servidor
+
+## AWS (conceptos básicos)
+
+1. ¿Dónde desplegarías una aplicación Angular? En Amazon S3 estático o Amplify.
+2. ¿Dónde desplegarías una API Node.js? En Amazon EC2, ECS o App Runner.
+3. ¿Qué servicio utilizarías para almacenar archivos? Amazon S3.
+4. ¿Qué es Amazon S3? Un servicio de almacenamiento de objetos escalable y seguro.
+5. ¿Qué es Amazon EC2? Un servicio que ofrece máquinas virtuales en la nube.
+6. ¿Cómo protegerías las variables de entorno en AWS? Usando AWS Systems Manager Parameter Store o Secrets Manager.
+
+## Uso de IA
+
+- Herramienta utilizada: GitHub Copilot.
+- Ayuda durante el desarrollo: generación de estructura, refactorización y revisión de errores.
+- Ejemplos de prompts:
+  - "Crea una API REST en Express con CRUD para tareas y manejo de errores."
+  - "Ayúdame a corregir el manejo de CORS y validaciones de entrada en TypeScript."
+- Verificación del código: se validó con compilación y pruebas automáticas mediante `npm test`.
